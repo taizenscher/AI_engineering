@@ -1,17 +1,16 @@
-from ollama import chat
-from ollama import ChatResponse
+from ollama import ChatResponse, Client
 from config.settings import settings
 
 class LLMClient:
-    def __init__(self):
-        self.model = settings.model
+    def __init__(self) -> None:
+        self.client = Client(host=settings.ollama_host)
 
     def generate(
             self,
             prompt: str,
             system_prompt: str | None = None,
         ) -> str:
-        response: ChatResponse = chat(model=self.model, messages=[
+        response: ChatResponse = self.client.chat(model=self.model, messages=[
             {
                 'role': 'user',
                 'content': prompt,

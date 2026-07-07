@@ -9,8 +9,8 @@ class Settings:
     def __init__(self) -> None:
         load_dotenv()
 
-        self.model: str = self._get_env("OLLAMA_MODEL")
-        self.host: str = self._get_env("OLLAMA_HOST")
+        self.ollama_model: str = self._get_env("OLLAMA_MODEL")
+        self.ollama_host: str = self._get_env("OLLAMA_HOST")
 
         self.temperature: float = 0.5
         self.timeout: int = 120
