@@ -73,7 +73,7 @@ htmlcov/
 # AI / LLM
 # ==========================================
 
-models/
+#models/
 weights/
 cache/
 downloads/
