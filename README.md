@@ -4,7 +4,7 @@
 Aprender AI Engineering construyendo un framework de agentes desde cero.
 Se busca construir una plataforma modular para agentes con memoria, herramientas y recuperación de conocimiento.
 
-##Estado
+## Estado
 - [x] Sprint 1 completado.
 
 ## Arquitectura actual
