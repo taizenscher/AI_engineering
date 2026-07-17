@@ -23,6 +23,6 @@ class BaseAgent:
         self.logger.info("Agent invoking model")
         return self.llm_client.generate(prompt, self.system_prompt)
 
-    def _process_response(self, resposne)->None: 
+    def __process_response(self, resposne)->None: 
         self.logger.info("Processing response")
         print(resposne)
