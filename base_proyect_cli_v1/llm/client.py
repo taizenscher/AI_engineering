@@ -26,10 +26,11 @@ class LLMClient:
             prompt: str,
             system_prompt: str | None = None,
         ) -> str:
+        self.logger.info("Model generating response")
         response: ChatResponse = self.client.chat(model=self.ollama_model, messages=[
             {
                 'role': 'user',
-                'content': prompt,
+                'content': system_prompt+prompt,
             },
         ])
         return response.message.content
