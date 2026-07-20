@@ -24,6 +24,7 @@ class LLMClient:
     def generate(
             self,
             prompt: str,
+            role: str = "user", 
             system_prompt: str | None = None,
         ) -> str:
         self.logger.info("Model generating response")
@@ -33,7 +34,7 @@ class LLMClient:
                 "content": system_prompt
             },
             {
-                "role": "user",
+                "role": role,
                 "content": prompt
             }
         ])

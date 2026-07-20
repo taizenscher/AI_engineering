@@ -1,5 +1,6 @@
 from llm.client import LLMClient
-from base_proyect_cli_v1.models.message import AgentResponse
+from base_proyect_cli_v1.models.message import Message
+from base_proyect_cli_v1.models.conversation import Conversation
 from logging_config import get_logger
 
 class BaseAgent:
@@ -10,22 +11,28 @@ class BaseAgent:
         self.llm_client:LLMClient = client
         self.system_prompt:str = None
         self.logger = get_logger(__name__)
+        self.conversation:Conversation = Conversation()
 
-    def run(self, prompt)->AgentResponse:
+    def run(self, prompt)->Conversation:
         self.logger.info("Agent response generation started")
-        
-        response:AgentResponse = self.__invoke_model(prompt)
-        response = self._invoke_model(prompt)
+
+        response:Message = self.__invoke_model(prompt, role="user")
+        self.conversation.add_message(response)
+        response = self._process_response(response)
+        response:Message = self.__invoke_model(prompt, role="assistant")
+        self.conversation.add_message(response)
         response = self._process_response(response)
 
-        return response
+        return self.conversation
 
     def __prepare_prompt(self):
         pass
 
-    def __invoke_model(self, prompt)->AgentResponse:
+    def __invoke_model(self, prompt, role:str=None)->Message:
         self.logger.info("Agent invoking model")
-        return self.llm_client.generate(prompt, self.system_prompt)
+        return self.llm_client.generate(
+            prompt=prompt, role=role, system_prompt=self.system_prompt
+            )
 
     def __process_response(self, resposne)->None: 
         self.logger.info("Processing response")
