@@ -29,9 +29,13 @@ class LLMClient:
         self.logger.info("Model generating response")
         response: ChatResponse = self.client.chat(model=self.ollama_model, messages=[
             {
-                'role': 'user',
-                'content': system_prompt+prompt,
+                "role": "system",
+                "content": system_prompt
             },
+            {
+                "role": "user",
+                "content": prompt
+            }
         ])
         return response.message.content
 

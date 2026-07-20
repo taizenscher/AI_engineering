@@ -7,8 +7,7 @@ class Conversation:
     def add_message(self, message:Message=None)->None:
         if not isinstance(message, Message):
             raise TypeError("Type error, message doesn't match class.")
-        else:
-            self._messages.append(message)
+        self._messages.append(message)
 
     def get_messages(self)->list[Message]:
         return self._messages

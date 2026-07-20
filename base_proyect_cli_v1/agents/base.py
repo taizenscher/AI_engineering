@@ -1,5 +1,5 @@
 from llm.client import LLMClient
-from models.response import AgentResponse
+from base_proyect_cli_v1.models.message import AgentResponse
 from logging_config import get_logger
 
 class BaseAgent:
