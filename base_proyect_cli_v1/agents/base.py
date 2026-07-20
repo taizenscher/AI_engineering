@@ -12,8 +12,12 @@ class BaseAgent:
         self.logger = get_logger(__name__)
 
     def run(self, prompt)->AgentResponse:
-        self.logger("Agent response generation started")
+        self.logger.info("Agent response generation started")
+        
         response:AgentResponse = self.__invoke_model(prompt)
+        response = self._invoke_model(prompt)
+        response = self._process_response(response)
+
         return response
 
     def __prepare_prompt(self):
