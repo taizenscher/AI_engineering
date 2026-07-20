@@ -13,22 +13,27 @@ class BaseAgent:
         self.logger = get_logger(__name__)
         self.conversation:Conversation = Conversation()
 
-    def run(self, prompt)->Conversation:
+    def run(self, prompt)->Message:
         self.logger.info("Agent response generation started")
 
-        response:Message = self.__invoke_model(prompt, role="user")
-        self.conversation.add_message(response)
-        response = self._process_response(response)
-        response:Message = self.__invoke_model(prompt, role="assistant")
-        self.conversation.add_message(response)
-        response = self._process_response(response)
+        user_message = Message(role="user", message=prompt)
+        self.conversation.add_message(user_message)
+        response:Message = self.__invoke_model(
+            prompt=user_message.content,
+            role=user_message.role
+            )
+        assistant_message = Message(
+            role="assistant",
+            content=response
+        )
+        self.conversation.add_message(assistant_message)
 
-        return self.conversation
+        return self.assistant_message
 
     def __prepare_prompt(self):
         pass
 
-    def __invoke_model(self, prompt, role:str=None)->Message:
+    def __invoke_model(self, prompt, role)->Message:
         self.logger.info("Agent invoking model")
         return self.llm_client.generate(
             prompt=prompt, role=role, system_prompt=self.system_prompt
