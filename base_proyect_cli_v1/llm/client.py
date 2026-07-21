@@ -27,10 +27,19 @@ class LLMClient:
         self.logger.info("Model generating response")
         response: ChatResponse = self.client.chat(
             model=self.ollama_model,
-            messages=messages,
+            messages=self._serialize(messages),
         )
-        return response.message
-
+        return Message(
+            role=response.message.role,
+            content=response.message.content,
+        )
+    
+    def _serialize(self,conversation):
+        messages=[]
+        for message in conversation.get_messages():
+            messages.append({"role":message.role, "content":message.content})
+        return messages
+            
 def get_client() -> LLMClient:
     client = LLMClient()
     return client

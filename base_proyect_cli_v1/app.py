@@ -10,4 +10,4 @@ if __name__=="__main__":
     b_agent = BaseAgent("Base Agent", client=client)
     prompt = input(">>>")
     response = b_agent.run(prompt=prompt)
-    print(response.content)
+    print(response)

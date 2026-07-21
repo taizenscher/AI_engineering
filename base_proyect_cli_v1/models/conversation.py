@@ -11,10 +11,7 @@ class Conversation:
         self._messages.append(message)
 
     def get_messages(self) -> list[Message]:
-        messages = []
-        for i,message in enumerate(self._messages):
-            messages.append({"role":message.role, "content":message.content})
-        return messages
+        return self._messages
 
     def clear(self) -> None:
         self._messages = []
