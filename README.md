@@ -1,27 +1,61 @@
 # AI Engineering Base Project
 
 ## Objetivo
-Aprender AI Engineering construyendo un framework de agentes desde cero.
-Se busca construir una plataforma modular para agentes con memoria, herramientas y recuperación de conocimiento.
+
+Construir un framework de agentes desde cero mientras se aprenden los fundamentos de AI Engineering.
+
+El foco del proyecto es comprender la arquitectura detrás de:
+
+- Agentes
+- Conversaciones
+- LLMs
+- Memoria
+- Herramientas
+- Sistemas multiagente
 
 ## Estado
-- [x] Sprint 1 completado.
+✅ Sprint 0 — Estructura del proyecto
+✅ Sprint 1 — Configuración y cliente LLM
+✅ Sprint 2 — BaseAgent
+✅ Sprint 3 — Modelo de conversación
 
 ## Arquitectura actual
-Settings -> LLMClient -> BaseAgent -> Ollama
+```app.py -> BaseAgent -> Conversation -> LLMClient -> Ollama```
 
-## Capacidades
-✔ Configuración centralizada
+## Componentes implementados
+```
+config/
+    Settings
+logging/
+    Logging centralizado
+llm/
+    LLMClient
+agents/
+    BaseAgent
+models/
+    Message
+    Conversation
+```
 
-✔ Cliente LLM
+## Flujo actual
+Usuario -> Message(role="user") -> Conversation -> LLMClient -> Ollama -> Message(role="assistant") -> Conversation
 
-✔ Logging
+## Roadmap
+✅ Configuración
+✅ Cliente LLM
+✅ Agente base
+✅ Conversación
+⏳ System Prompt
+⏳ Historial completo
+⏳ Memory
+⏳ Tools
+⏳ RAG
+⏳ Multi-Agent
+⏳ Workflows
 
-✔ BaseAgent
-
-✔ AgentResponse
-
-## Próximos pasos
-- comportamiento del agente
-- conversación
-- herramientas
+## Tecnologías
+- Python
+- Ollama
+- dotenv
+- Logging
+- Git
