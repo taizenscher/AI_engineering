@@ -23,17 +23,13 @@ class LLMClient:
             self.logger.exception(e)
             raise
 
-    def generate(self, message: Message, system_prompt: str | None = None) -> str:
+    def generate(self, messages: list[Message], system_prompt: str | None = None) -> Message:
         self.logger.info("Model generating response")
         response: ChatResponse = self.client.chat(
             model=self.ollama_model,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": message.role, "content": message.content},
-            ],
+            messages=messages,
         )
-        return response.message.content
-
+        return response.message
 
 def get_client() -> LLMClient:
     client = LLMClient()
