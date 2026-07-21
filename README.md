@@ -14,10 +14,10 @@ El foco del proyecto es comprender la arquitectura detrás de:
 - Sistemas multiagente
 
 ## Estado
-✅ Sprint 0 — Estructura del proyecto
-✅ Sprint 1 — Configuración y cliente LLM
-✅ Sprint 2 — BaseAgent
-✅ Sprint 3 — Modelo de conversación
+- ✅ Sprint 0 — Estructura del proyecto
+- ✅ Sprint 1 — Configuración y cliente LLM
+- ✅ Sprint 2 — BaseAgent
+- ✅ Sprint 3 — Modelo de conversación
 
 ## Arquitectura actual
 ```app.py -> BaseAgent -> Conversation -> LLMClient -> Ollama```
