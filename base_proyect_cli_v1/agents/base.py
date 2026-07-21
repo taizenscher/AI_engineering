@@ -19,16 +19,15 @@ class BaseAgent:
 
         user_message:Message = Message(role="user", content=prompt)
         self.conversation.add_message(user_message)
-        assistant_message:str = self.__invoke_model(self.conversation)
-        # assistant_message:Message = Message(role="assistant", content=response)
+        assistant_message:Message = self.__invoke_model(self.conversation)
         self.conversation.add_message(assistant_message)
 
-        return assistant_message.content
+        return assistant_message
 
-    def __invoke_model(self, conversation: list[Message]) -> str:
+    def __invoke_model(self, messages: Conversation) -> Message:
         self.logger.info("Agent invoking model")
         return self.llm_client.generate(
-            messages=conversation, system_prompt=self.system_prompt
+            messages=messages, system_prompt=self.system_prompt
         )
 
     def __process_response(self, resposne) -> None:
