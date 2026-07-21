@@ -41,17 +41,17 @@ models/
 Usuario -> Message(role="user") -> Conversation -> LLMClient -> Ollama -> Message(role="assistant") -> Conversation
 
 ## Roadmap
-✅ Configuración
-✅ Cliente LLM
-✅ Agente base
-✅ Conversación
-⏳ System Prompt
-⏳ Historial completo
-⏳ Memory
-⏳ Tools
-⏳ RAG
-⏳ Multi-Agent
-⏳ Workflows
+- ✅ Configuración
+- ✅ Cliente LLM
+- ✅ Agente base
+- ✅ Conversación
+- ⏳ System Prompt
+- ⏳ Historial completo
+- ⏳ Memory
+- ⏳ Tools
+- ⏳ RAG
+- ⏳ Multi-Agent
+- ⏳ Workflows
 
 ## Tecnologías
 - Python
