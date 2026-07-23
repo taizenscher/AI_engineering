@@ -1,7 +1,7 @@
 from llm.client import LLMClient
 from models.message import Message
 from models.conversation import Conversation
-from models.agentstate import AgentState
+from models.agent_state import AgentState
 from logging_config import get_logger
 
 
