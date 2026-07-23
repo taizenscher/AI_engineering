@@ -2,6 +2,7 @@ from llm.client import LLMClient
 from models.message import Message
 from models.conversation import Conversation
 from models.agent_state import AgentState
+from context.builder import ContextBuilder
 from logging_config import get_logger
 
 
@@ -10,7 +11,6 @@ class BaseAgent:
         self.id: int = None
         self.name: str = name
         self.description: str = None
-        # self.system_prompt: str = None
         self.logger = get_logger(__name__)
         
         self.state:AgentState = AgentState()
@@ -29,9 +29,8 @@ class BaseAgent:
 
     def __invoke_model(self, messages: Conversation) -> Message:
         self.logger.info("Agent invoking model")
-        return self.llm_client.generate(
-            messages=messages, system_prompt=self.state.system_prompt
-        )
+        _context = ContextBuilder.build(state=self.state, conversation=self.conversation)
+        return self.llm_client.generate(_context)
 
     def __process_response(self, resposne) -> None:
         self.logger.info("Processing response")
